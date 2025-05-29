@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: processador
+  namespace: application
+  labels:
+    app: processador
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: processador
+  template: # Define o template do Pod
+    metadata:
+      labels:
+        app: processador
+    spec:
+      containers:
+        - name: processador
+          image: application-processador
+          imagePullPolicy: Never

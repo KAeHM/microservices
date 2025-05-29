@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: client
+  namespace: application
+  labels:
+    app: client
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: client
+  template: # Define o template do Pod
+    metadata:
+      labels:
+        app: client
+    spec:
+      containers:
+        - name: client
+          image: application-client
+          imagePullPolicy: Never
