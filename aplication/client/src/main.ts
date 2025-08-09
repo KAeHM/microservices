@@ -17,11 +17,7 @@ interface Request {
 
 const kafka = new Kafka({
   clientId: "client",
-  brokers: [
-    "kafka-0.kafka-svc.kafka.svc.cluster.local:9092",
-    "kafka-1.kafka-svc.kafka.svc.cluster.local:9093",
-    "kafka-2.kafka-svc.kafka.svc.cluster.local:9094",
-  ],
+  brokers: ["my-cluster-kafka-bootstrap.kafka.svc.cluster.local:9092"],
 });
 
 class Client {

@@ -17,5 +17,5 @@ spec:
     spec:
       containers:
         - name: client
-          image: application-client
+          image: application/client
           imagePullPolicy: Never

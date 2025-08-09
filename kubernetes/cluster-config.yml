@@ -3,18 +3,14 @@ kind: Cluster
 nodes:
   - role: control-plane
     extraPortMappings:
-      - containerPort: 30092
-        hostPort: 30092
-      - containerPort: 30093
-        hostPort: 30093
-      - containerPort: 30094
+      - containerPort: 30094 # Para kafka-0
         hostPort: 30094
-      - containerPort: 30042
+      - containerPort: 30095 # Para kafka-1
+        hostPort: 30095
+      - containerPort: 30096 # Para kafka-2
+        hostPort: 30096
+      - containerPort: 30042 # Cassandra
         hostPort: 30042
-      - containerPort: 30043
-        hostPort: 30043
-      - containerPort: 30044
-        hostPort: 30044
   - role: worker
   - role: worker
   - role: worker

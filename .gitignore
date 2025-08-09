@@ -1,0 +1,5 @@
+localstack/volume/*
+opentofu/infra_localstack/.terraform.lock.hcl
+opentofu/infra_localstack/.terraform
+*.node_modules
+*.env

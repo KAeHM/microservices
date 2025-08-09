@@ -14,14 +14,22 @@ interface Request {
   atTime: string;
 }
 
+const CASSANDRA_USER = process.env.CASSANDRA_USER;
+const CASSANDRA_PASSWORD = process.env.CASSANDRA_PASSWORD;
+
+// 1. Crie o provedor de autenticação
+const authProvider = new cassandra.auth.PlainTextAuthProvider(
+  CASSANDRA_USER || "",
+  CASSANDRA_PASSWORD || ""
+);
+
 const client = new cassandra.Client({
   contactPoints: [
-    "cassandra-0.cassandra-headless.cassandra.svc.cluster.local:9042",
-    "cassandra-1.cassandra-headless.cassandra.svc.cluster.local:9042",
-    "cassandra-2.cassandra-headless.cassandra.svc.cluster.local:9042",
+    "demo-dc1-all-pods-service.k8ssandra-operator.svc.cluster.local:9042",
   ],
-  localDataCenter: "my-datacenter-1",
+  localDataCenter: "dc1",
   keyspace: "k1",
+  authProvider: authProvider,
 });
 
 class Processador {
@@ -97,11 +105,7 @@ class Processador {
 
 const kafka = new Kafka({
   clientId: "processador",
-  brokers: [
-    "kafka-0.kafka-svc.kafka.svc.cluster.local:9092",
-    "kafka-1.kafka-svc.kafka.svc.cluster.local:9093",
-    "kafka-2.kafka-svc.kafka.svc.cluster.local:9094",
-  ],
+  brokers: ["my-cluster-kafka-bootstrap.kafka.svc.cluster.local:9092"],
 });
 
 class ConsumerKafka {

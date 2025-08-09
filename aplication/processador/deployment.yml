@@ -17,5 +17,10 @@ spec:
     spec:
       containers:
         - name: processador
-          image: application-processador
+          image: application/processador
           imagePullPolicy: Never
+          env:
+            - name: CASSANDRA_USER
+              value: demo-superuser
+            - name: CASSANDRA_PASSWORD
+              value: sqMadhSBu-ar1mK7qvot
